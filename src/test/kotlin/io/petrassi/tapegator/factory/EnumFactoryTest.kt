@@ -11,11 +11,14 @@ import org.junit.jupiter.api.Test
 class EnumFactoryTest {
     @Test
     fun `Load default implementation from system`() {
+        // Given
+        val firstElement = PossibleFakes.values().first().get()
+
         // When
         val fakeData = FakeEnumFactory.create()
 
         // Then
-        fakeData.value shouldBe FAKE_DATA_FIRST_IMPL_VALUE
+        fakeData shouldBe firstElement
     }
 
     @Test
