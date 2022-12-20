@@ -8,11 +8,14 @@ import org.junit.jupiter.api.Test
 class MapFactoryTest {
     @Test
     fun `Load default implementation from system`() {
+        // Given
+        val firstElement = FakeMapFactory.implementations.values.first().get()
+
         // When
         val fakeData = FakeMapFactory.create()
 
         // Then
-        fakeData.value shouldBe FAKE_DATA_FIRST_IMPL_VALUE
+        fakeData shouldBe firstElement
     }
 
     @Test
