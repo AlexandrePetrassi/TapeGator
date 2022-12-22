@@ -7,6 +7,7 @@ internal class LoaderTest {
 
     private val yamlFile = "randomDataClass.yaml"
     private val clazz = RandomDataClass::class.java
+    private val nameValue = "myName"
 
     @Test
     fun `Load from system`() {
@@ -17,7 +18,7 @@ internal class LoaderTest {
         val dataClass = loader.load(clazz, yamlFile)
 
         // Then
-        assertEquals(dataClass.name, "myName")
+        assertEquals(dataClass.name, nameValue)
     }
 
     @Test
@@ -29,7 +30,7 @@ internal class LoaderTest {
         val dataClass = loader.load(clazz, yamlFile)
 
         // Then
-        assertEquals(dataClass.name, "myName")
+        assertEquals(dataClass.name, nameValue)
     }
 
     @Test
@@ -41,7 +42,7 @@ internal class LoaderTest {
         val dataClass = loader.load(clazz, yamlFile)
 
         // Then
-        assertEquals(dataClass.name, "myName")
+        assertEquals(dataClass.name, nameValue)
     }
 }
 
