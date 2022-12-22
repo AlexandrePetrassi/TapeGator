@@ -1,6 +1,6 @@
 package io.petrassi.tapegator.config
 
-import org.junit.jupiter.api.Assertions.*
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
 internal class LoaderTest {
@@ -19,7 +19,7 @@ internal class LoaderTest {
         val dataClass: RandomDataClass = loader.load(yamlFile)
 
         // Then
-        assertEquals(dataClass.name, nameValue)
+        dataClass.name shouldBe nameValue
     }
 
     @Test
@@ -31,7 +31,7 @@ internal class LoaderTest {
         val dataClass: RandomDataClass = loader.load(yamlFile)
 
         // Then
-        assertEquals(dataClass.name, nameValue)
+        dataClass.name shouldBe nameValue
     }
 
     @Test
@@ -43,6 +43,6 @@ internal class LoaderTest {
         val dataClass: RandomDataClass = loader.load(yamlFile)
 
         // Then
-        assertEquals(dataClass.name, nameValue)
+        dataClass.name shouldBe nameValue
     }
 }
