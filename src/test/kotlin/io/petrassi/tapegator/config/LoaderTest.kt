@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test
 
 internal class LoaderTest {
 
+    data class RandomDataClass(val name: String)
+
     private val yamlFile = "randomDataClass.yaml"
-    private val clazz = RandomDataClass::class.java
     private val nameValue = "myName"
 
     @Test
@@ -15,7 +16,7 @@ internal class LoaderTest {
         val loader = Loader.create()
 
         // When
-        val dataClass = loader.load(clazz, yamlFile)
+        val dataClass: RandomDataClass = loader.load(yamlFile)
 
         // Then
         assertEquals(dataClass.name, nameValue)
@@ -27,7 +28,7 @@ internal class LoaderTest {
         val loader = Loader.create(LoaderFactory.JACKSON)
 
         // When
-        val dataClass = loader.load(clazz, yamlFile)
+        val dataClass: RandomDataClass = loader.load(yamlFile)
 
         // Then
         assertEquals(dataClass.name, nameValue)
@@ -39,11 +40,9 @@ internal class LoaderTest {
         val loader = Loader.create("JaCkSoN")
 
         // When
-        val dataClass = loader.load(clazz, yamlFile)
+        val dataClass: RandomDataClass = loader.load(yamlFile)
 
         // Then
         assertEquals(dataClass.name, nameValue)
     }
 }
-
-data class RandomDataClass(val name: String)
