@@ -26,6 +26,7 @@ internal object JacksonYamlLoader : Loader {
 
     private fun toUrl(filename: String): URL =
         classLoader.getResource(filename) ?: error(FIND_ERROR.format(filename))
+
     override fun <T> load(clazz: Class<T>, filename: String): T = try {
         objectMapper.readValue(toUrl(filename), clazz)
     } catch (e: IOException) {
