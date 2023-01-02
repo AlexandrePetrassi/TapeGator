@@ -1,48 +1,62 @@
 package io.petrassi.tapegator.config
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
+import io.petrassi.tapegator.config.JacksonYamlLoader.FIND_ERROR
+import io.petrassi.tapegator.config.JacksonYamlLoader.READ_ERROR
 import org.junit.jupiter.api.Test
 
 internal class LoaderTest {
 
+    private val sut: Loader = Loader.create(LoaderFactory.JACKSON)
+
     data class RandomDataClass(val name: String)
-
-    private val yamlFile = "randomDataClass.yaml"
-    private val nameValue = "myName"
+    data class WrongDataClass(val wrongType: String)
 
     @Test
-    fun `Load from system`() {
+    fun `Load from file`() {
         // Given
-        val loader = Loader.create()
+        val filename = yamlFile
 
         // When
-        val dataClass: RandomDataClass = loader.load(yamlFile)
+        val dataClass: RandomDataClass = sut.load(filename)
 
         // Then
         dataClass.name shouldBe nameValue
     }
 
     @Test
-    fun `Load from enum`() {
+    fun `Load invalid file should throw error`() {
         // Given
-        val loader = Loader.create(LoaderFactory.JACKSON)
+        val filename = "I_Do_Not_Exist"
+        val classname = RandomDataClass::class.java.name
 
         // When
-        val dataClass: RandomDataClass = loader.load(yamlFile)
+        val error = shouldThrow<IllegalStateException> {
+            sut.load<RandomDataClass>(filename)
+        }
 
         // Then
-        dataClass.name shouldBe nameValue
+        error.message shouldBe FIND_ERROR.format(filename, classname)
     }
 
     @Test
-    fun `Load from name`() {
+    fun `Load invalid type should throw error`() {
         // Given
-        val loader = Loader.create("JaCkSoN")
+        val filename = yamlFile
+        val classname = WrongDataClass::class.java.name
 
         // When
-        val dataClass: RandomDataClass = loader.load(yamlFile)
+        val error = shouldThrow<IllegalStateException> {
+            sut.load<WrongDataClass>(filename)
+        }
 
         // Then
-        dataClass.name shouldBe nameValue
+        error.message shouldBe READ_ERROR.format(filename, classname)
+    }
+
+    companion object {
+        private const val yamlFile = "randomDataClass.yaml"
+        private const val nameValue = "myName"
     }
 }
