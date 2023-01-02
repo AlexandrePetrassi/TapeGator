@@ -15,8 +15,8 @@ internal object JacksonYamlLoader : Loader {
                 " folder."
 
     private const val READ_ERROR =
-        "Error while deserializing [%s]. Please, check if the file you are" +
-                " trying to load really matches the type [%s]."
+        "Error while deserializing [%s]. Please, check if the contents you" +
+                " are trying to load really matches the type [%s]."
 
     private val objectMapper: ObjectMapper by lazy {
         val mapper = ObjectMapper(YAMLFactory())
