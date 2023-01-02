@@ -10,7 +10,7 @@ internal class LoaderTest {
 
     private val sut: Loader = Loader.create(LoaderFactory.JACKSON)
 
-    data class RandomDataClass(val name: String)
+    data class ValidDataClass(val name: String)
     data class WrongDataClass(val wrongType: String)
 
     @Test
@@ -19,7 +19,7 @@ internal class LoaderTest {
         val filename = yamlFile
 
         // When
-        val dataClass: RandomDataClass = sut.load(filename)
+        val dataClass: ValidDataClass = sut.load(filename)
 
         // Then
         dataClass.name shouldBe nameValue
@@ -29,11 +29,11 @@ internal class LoaderTest {
     fun `Load invalid file should throw error`() {
         // Given
         val filename = "I_Do_Not_Exist"
-        val classname = RandomDataClass::class.java.name
+        val classname = ValidDataClass::class.java.name
 
         // When
         val error = shouldThrow<IllegalStateException> {
-            sut.load<RandomDataClass>(filename)
+            sut.load<ValidDataClass>(filename)
         }
 
         // Then
