@@ -1,12 +1,12 @@
 package io.petrassi.tapegator.config
 
-import io.petrassi.tapegator.factory.EnumFactory
-import java.util.function.Supplier
+import io.petrassi.tapegator.factory.ReflectionFactory
 
-enum class LoaderFactory(supplier: Supplier<Loader>) : Supplier<Loader> by supplier {
-    JACKSON({ JacksonYamlLoader });
-    companion object : EnumFactory<Loader, LoaderFactory> {
-        override fun getEnum(): Class<LoaderFactory> = LoaderFactory::class.java
-        override fun getType(): Class<Loader> = Loader::class.java
+object LoaderFactory : ReflectionFactory<Loader> {
+    override fun getType(): Class<Loader> {
+        return Loader::class.java
+    }
+    override fun defaultImplementation(): String {
+        return JacksonYamlLoader::class.java.simpleName
     }
 }
