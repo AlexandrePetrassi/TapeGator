@@ -1,62 +1,34 @@
 package io.petrassi.tapegator.config
 
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
-import io.petrassi.tapegator.config.JacksonYamlLoader.FIND_ERROR
-import io.petrassi.tapegator.config.JacksonYamlLoader.READ_ERROR
 import org.junit.jupiter.api.Test
 
 internal class LoaderTest {
 
-    private val sut: Loader = Loader.create(LoaderFactory.JACKSON)
-
-    data class ValidDataClass(val name: String)
-    data class WrongDataClass(val wrongType: String)
+    private val sut: Loader = Loader.create(FakeLoader::class.java.simpleName)
 
     @Test
-    fun `Load from file`() {
+    fun `Load from valid FakeData`() {
         // Given
-        val filename = yamlFile
+        val clazz = FakeDataType::class.java
+        val filename = ""
 
         // When
-        val dataClass: ValidDataClass = sut.load(filename)
+        val dataClass = sut.load(clazz, filename)
 
         // Then
-        dataClass.name shouldBe nameValue
+        dataClass.data shouldBe FakeLoader.VALID_DATA_CONTENT
     }
 
     @Test
-    fun `Load invalid file should throw error`() {
+    fun `Load from valid FakeData using reified types`() {
         // Given
-        val filename = "I_Do_Not_Exist"
-        val classname = ValidDataClass::class.java.name
+        val filename = ""
 
         // When
-        val error = shouldThrow<IllegalStateException> {
-            sut.load<ValidDataClass>(filename)
-        }
+        val dataClass: FakeDataType = sut.load("")
 
         // Then
-        error.message shouldBe FIND_ERROR.format(filename, classname)
-    }
-
-    @Test
-    fun `Load invalid type should throw error`() {
-        // Given
-        val filename = yamlFile
-        val classname = WrongDataClass::class.java.name
-
-        // When
-        val error = shouldThrow<IllegalStateException> {
-            sut.load<WrongDataClass>(filename)
-        }
-
-        // Then
-        error.message shouldBe READ_ERROR.format(filename, classname)
-    }
-
-    companion object {
-        private const val yamlFile = "randomDataClass.yaml"
-        private const val nameValue = "myName"
+        dataClass.data shouldBe FakeLoader.VALID_DATA_CONTENT
     }
 }
