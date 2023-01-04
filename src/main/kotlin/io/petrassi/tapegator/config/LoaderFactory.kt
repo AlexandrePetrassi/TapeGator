@@ -7,6 +7,6 @@ object LoaderFactory : ReflectionFactory<Loader> {
         return Loader::class.java
     }
     override fun defaultImplementation(): String {
-        return JacksonYamlLoader::class.java.simpleName
+        return ""
     }
 }
