@@ -23,7 +23,7 @@
 
     <scm>
         <developerConnection>
-            scm:git:https://${tapegator.scm.password}@github.com/${tapegator.scm.username}/TapeGator.git
+            scm:git:https://${tapegator.scm.username}:${tapegator.scm.password}@github.com/${tapegator.scm.username}/TapeGator.git
         </developerConnection>
     </scm>
 
