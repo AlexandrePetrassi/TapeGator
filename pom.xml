@@ -19,6 +19,10 @@
         <kotest.version>5.5.4</kotest.version>
     </properties>
 
+    <scm>
+        <developerConnection>scm:git:https://github.com/AlexandrePetrassi/TapeGator.git</developerConnection>
+    </scm>
+
     <modules>
         <module>TapeGator-Core</module>
         <module>TapeGator-JacksonLoaderAdapter</module>
