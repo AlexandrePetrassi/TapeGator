@@ -17,12 +17,14 @@
         <junit.version>4.13.1</junit.version>
         <junit.version>5.9.0</junit.version>
         <kotest.version>5.5.4</kotest.version>
-        <petrassi.tapegator.scm.username>user</petrassi.tapegator.scm.username>
-        <petrassi.tapegator.scm.password>1234</petrassi.tapegator.scm.password>
+        <tapegator.scm.username>user</tapegator.scm.username>
+        <tapegator.scm.password>1234</tapegator.scm.password>
     </properties>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/AlexandrePetrassi/TapeGator.git</developerConnection>
+        <developerConnection>
+            scm:git:https://${tapegator.scm.password}@github.com/${tapegator.scm.username}/TapeGator.git
+        </developerConnection>
     </scm>
 
     <modules>
