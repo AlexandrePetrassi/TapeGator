@@ -17,11 +17,10 @@
         <junit.version>4.13.1</junit.version>
         <junit.version>5.9.0</junit.version>
         <kotest.version>5.5.4</kotest.version>
-        <tapegator.scm.username>user</tapegator.scm.username>
-        <tapegator.scm.password>1234</tapegator.scm.password>
     </properties>
 
     <scm>
+        <!--suppress UnresolvedMavenProperty -->
         <developerConnection>
             scm:git:https://${tapegator.scm.password}@github.com/${tapegator.scm.username}/TapeGator.git
         </developerConnection>
