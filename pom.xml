@@ -17,6 +17,8 @@
         <junit.version>4.13.1</junit.version>
         <junit.version>5.9.0</junit.version>
         <kotest.version>5.5.4</kotest.version>
+        <petrassi.tapegator.scm.username>user</petrassi.tapegator.scm.username>
+        <petrassi.tapegator.scm.password>1234</petrassi.tapegator.scm.password>
     </properties>
 
     <scm>
@@ -121,6 +123,8 @@
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <pushChanges>false</pushChanges>
+                    <username>${petrassi.tapegator.scm.username}</username>
+                    <password>${petrassi.tapegator.scm.password}</password>
                 </configuration>
             </plugin>
             <plugin>
