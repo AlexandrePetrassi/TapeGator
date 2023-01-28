@@ -125,8 +125,6 @@
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <pushChanges>true</pushChanges>
-                    <username>${tapegator.scm.username}</username>
-                    <password>${tapegator.scm.password}</password>
                 </configuration>
             </plugin>
             <plugin>
