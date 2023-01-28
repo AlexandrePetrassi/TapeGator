@@ -26,7 +26,7 @@ internal class LoaderTest {
         val filename = ""
 
         // When
-        val dataClass: FakeDataType = sut.load("")
+        val dataClass: FakeDataType = sut.load(filename)
 
         // Then
         dataClass.data shouldBe FakeLoader.VALID_DATA_CONTENT
