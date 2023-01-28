@@ -134,4 +134,10 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>local</id>
+            <url>file:${user.home}/.m2/repository</url>
+        </repository>
+    </distributionManagement>
 </project>
