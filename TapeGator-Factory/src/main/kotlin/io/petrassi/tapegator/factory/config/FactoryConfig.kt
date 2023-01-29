@@ -1,5 +1,8 @@
 package io.petrassi.tapegator.factory.config
 
+/**
+ * Store strings used for various messages and exceptions.
+ */
 object FactoryConfig {
 
     const val INSTANTIATION_ERROR: String =
