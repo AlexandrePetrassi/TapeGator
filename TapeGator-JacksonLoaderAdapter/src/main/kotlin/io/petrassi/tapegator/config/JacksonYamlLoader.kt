@@ -5,16 +5,16 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import java.io.IOException
 import java.net.URL
 
-internal object JacksonYamlLoader : Loader {
+object JacksonYamlLoader : Loader {
 
     private val classLoader = this::class.java.classLoader
 
-    internal const val FIND_ERROR =
+    const val FIND_ERROR =
         "Error while trying to find the file [%s]. Please, check if the file" +
                 " name is right or if the file really exists in the resources" +
                 " folder."
 
-    internal const val READ_ERROR =
+    const val READ_ERROR =
         "Error while deserializing [%s]. Please, check if the contents you" +
                 " are trying to load really matches the type [%s]."
 

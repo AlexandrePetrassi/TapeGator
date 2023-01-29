@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException
 /**
  * Internals for handling errors during instantiation of types via reflection.
  */
-internal object ClassFinder {
+object ClassFinder {
 
     /**
      * Returns an instance of a class called [name].

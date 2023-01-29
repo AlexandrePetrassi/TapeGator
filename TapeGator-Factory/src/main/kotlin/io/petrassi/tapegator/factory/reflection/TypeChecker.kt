@@ -1,6 +1,6 @@
 package io.petrassi.tapegator.factory.reflection
 
-internal object TypeChecker {
+object TypeChecker {
     fun Class<*>.checkType(target: String): Boolean =
         name == target || isSubType(target) || implements(target)
 

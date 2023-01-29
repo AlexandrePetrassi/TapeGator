@@ -3,7 +3,7 @@ package io.petrassi.tapegator.config
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
-internal class LoaderTest {
+class LoaderTest {
 
     private val sut: Loader = Loader.create(FakeLoader::class.java.simpleName)
 
