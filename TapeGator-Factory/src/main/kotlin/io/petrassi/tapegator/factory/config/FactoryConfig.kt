@@ -3,7 +3,7 @@ package io.petrassi.tapegator.factory.config
 /**
  * Store strings used for various messages and exceptions.
  */
-object FactoryConfig {
+internal object FactoryConfig {
 
     const val INSTANTIATION_ERROR: String =
         "Instantiation error for class [%s]. The class must not be an abstract" +

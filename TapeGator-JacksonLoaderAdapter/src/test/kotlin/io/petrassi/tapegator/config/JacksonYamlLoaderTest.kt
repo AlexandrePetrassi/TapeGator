@@ -6,7 +6,7 @@ import io.petrassi.tapegator.config.JacksonYamlLoader.FIND_ERROR
 import io.petrassi.tapegator.config.JacksonYamlLoader.READ_ERROR
 import org.junit.jupiter.api.Test
 
-class JacksonYamlLoaderTest {
+internal class JacksonYamlLoaderTest {
 
     private val implementation = JacksonYamlLoader::class.java.simpleName
     private val sut: Loader = Loader.create(implementation)
