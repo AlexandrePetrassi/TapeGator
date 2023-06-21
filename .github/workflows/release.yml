@@ -1,0 +1,41 @@
+name: Java with Maven Release
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Determine release version
+        id: determine_version
+        if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
+        run: |
+          latest_tag=$(git describe --tags --abbrev=0)
+          next_version=$(semver bump patch $latest_tag)
+          echo "::set-output name=release_version::$next_version"
+
+      - name: Build and create snapshot tag and release
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          mvn --batch-mode release:prepare -DreleaseVersion=${{ steps.determine_version.outputs.release_version }}-SNAPSHOT -DautoResolveSnapshots=1 "-Dtapegator.scm.username=AlexandrePetrassi" -Dtapegator.scm.password=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"
+          mvn release:perform -Darguments="-Dmaven.javadoc.skip=true"
+
+      - name: Build and create release
+        if: github.ref == 'refs/heads/master'
+        run: |
+          mvn --batch-mode release:prepare -DreleaseVersion=${{ steps.determine_version.outputs.release_version }} -DautoResolveSnapshots=1 "-Dtapegator.scm.username=AlexandrePetrassi" -Dtapegator.scm.password=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"
+          mvn release:perform -Darguments="-Dmaven.javadoc.skip=true"
