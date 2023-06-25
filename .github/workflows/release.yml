@@ -25,6 +25,11 @@ jobs:
 
       - name: Build and create snapshot tag and release
         if: github.ref == 'refs/heads/develop'
+        run: |
+          mvn verify
+
+      - name: Build and create release
+        if: github.ref == 'refs/heads/master'
         env:
           GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
@@ -34,43 +39,39 @@ jobs:
           calculate_next_version() {
             local latest_tag
             latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-            
+          
             local major
             local minor
             local patch
-            
+          
             major=$(cut -d. -f1 <<< "$latest_tag")
             minor=$(cut -d. -f2 <<< "$latest_tag")
             patch=$(cut -d. -f3 <<< "$latest_tag")
-            
+          
             if [[ "$minor" == "" ]]; then
             minor=0
             fi
-            
+          
             if [[ "$patch" == "" ]]; then
             patch=0
             fi
-            
+          
             patch=$((patch + 1))
-            
+          
             echo "${major}.${minor}.${patch}"
           }
-
+          
           git config user.name "${GIT_COMMITTER_NAME}"
           git config user.email "${GIT_COMMITTER_EMAIL}"
-
-          next_version="$(calculate_next_version)-SNAPSHOT"
-
-          mvn --batch-mode release:prepare -DreleaseVersion="${next_version}" -DautoResolveSnapshots=0 "-Dtapegator.scm.username=${GIT_COMMITTER_USER}" "-Dtapegator.scm.password=${GIT_COMMITTER_PASS}"
-          mvn release:perform -Darguments="-Dmaven.javadoc.skip=true"
-
-      - name: Build and create release
-        if: github.ref == 'refs/heads/master'
-        env:
-          GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
-          GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
-        run: |
-          git config --global user.name "${GIT_COMMITTER_NAME}"
-          git config --global user.email "${GIT_COMMITTER_EMAIL}"
-          mvn --batch-mode release:prepare -DreleaseVersion="${{ steps.determine_version.outputs.release_version }}" -DautoResolveSnapshots=1 "-Dtapegator.scm.username=AlexandrePetrassi" -Dtapegator.scm.password="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"
-          mvn release:perform -Darguments="-Dmaven.javadoc.skip=true"
+          
+          next_version="$(calculate_next_version)"
+          
+          mvn release:prepare \
+            --batch-mode \
+            "-DreleaseVersion=${next_version}" \
+            "-DautoResolveSnapshots=1" \
+            "-Dtapegator.scm.username=${GIT_COMMITTER_USER}" \
+            "-Dtapegator.scm.password=${GIT_COMMITTER_PASS}"
+          
+          mvn release:perform \
+            "-Darguments=-Dmaven.javadoc.skip=true"
