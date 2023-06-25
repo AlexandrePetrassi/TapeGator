@@ -126,7 +126,7 @@
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <pushChanges>true</pushChanges>
-                    <scmCommentPrefix>Release:</scmCommentPrefix>
+                    <scmCommentPrefix>Release: </scmCommentPrefix>
                 </configuration>
             </plugin>
             <plugin>
