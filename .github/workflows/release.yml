@@ -2,7 +2,7 @@ name: Java with Maven Release
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "develop" ]
 
 jobs:
 
