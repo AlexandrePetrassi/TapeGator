@@ -19,6 +19,7 @@
         <kotest.version>5.5.4</kotest.version>
         <tapegator.scm.username>user</tapegator.scm.username>
         <tapegator.scm.password>1234</tapegator.scm.password>
+        <tapegator.scm.prefix>Release: </tapegator.scm.prefix>
     </properties>
 
     <scm>
@@ -126,7 +127,7 @@
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <pushChanges>true</pushChanges>
-                    <scmCommentPrefix>Release: </scmCommentPrefix>
+                    <scmCommentPrefix>${tapegator.scm.prefix}</scmCommentPrefix>
                 </configuration>
             </plugin>
             <plugin>

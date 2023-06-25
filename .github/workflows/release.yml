@@ -40,7 +40,8 @@ jobs:
             "-DreleaseVersion=${next_version}" \
             "-DautoResolveSnapshots=1" \
             "-Dtapegator.scm.username=${GIT_COMMITTER_USER}" \
-            "-Dtapegator.scm.password=${GIT_COMMITTER_PASS}"
+            "-Dtapegator.scm.password=${GIT_COMMITTER_PASS}" \
+            "-Dtapegator.scm.prefix=Release: "
           
           mvn release:perform \
             "-Darguments=-Dmaven.javadoc.skip=true"
