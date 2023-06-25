@@ -61,7 +61,7 @@ jobs:
 
           next_version="$(calculate_next_version)-SNAPSHOT"
 
-          mvn --batch-mode release:prepare -DreleaseVersion="${next_version}" -DautoResolveSnapshots=1 "-Dtapegator.scm.username=${GIT_COMMITTER_USER}" "-Dtapegator.scm.password=${GIT_COMMITTER_PASS}"
+          mvn --batch-mode release:prepare -DreleaseVersion="${next_version}" -DautoResolveSnapshots=0 "-Dtapegator.scm.username=${GIT_COMMITTER_USER}" "-Dtapegator.scm.password=${GIT_COMMITTER_PASS}"
           mvn release:perform -Darguments="-Dmaven.javadoc.skip=true"
 
       - name: Build and create release
