@@ -27,6 +27,7 @@ jobs:
         id: determine_version
         if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
         run: |
+          npm install -g semver
           latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           next_version=$(semver bump patch $latest_tag)
           echo "::set-output name=release_version::$next_version"
