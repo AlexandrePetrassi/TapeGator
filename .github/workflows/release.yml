@@ -29,7 +29,7 @@ jobs:
           GIT_COMMITTER_USER: ${{ secrets.GIT_COMMITTER_USER }}
           GIT_COMMITTER_PASS: ${{ secrets.GIT_COMMITTER_PASS }}
         run: |
-          source version_calculator.sh
+          source ".github/scripts/version_calculator.sh"
           next_version="$(calculate_next_version)"
           
           git config user.name "${GIT_COMMITTER_NAME}"
