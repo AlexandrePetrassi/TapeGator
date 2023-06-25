@@ -30,7 +30,7 @@ jobs:
           npm install -g semver
           latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           next_version=$(semver bump patch $latest_tag)
-          echo "::set-output name=release_version::$next_version"
+          echo "RELEASE_VERSION=${RELEASE_VERSION}" >> $GITHUB_ENV
 
       - name: Build and create snapshot tag and release
         if: github.ref == 'refs/heads/develop'
