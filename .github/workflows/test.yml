@@ -1,0 +1,27 @@
+name: Java with Maven Verify
+
+on:
+  push:
+    branches: [ "develop" ]
+
+jobs:
+
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: maven
+
+      - name: Build and test
+        run: |
+          mvn verify
