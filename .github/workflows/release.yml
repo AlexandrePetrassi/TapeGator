@@ -23,7 +23,6 @@ jobs:
           cache: maven
 
       - name: Build and create release
-        if: github.ref == 'refs/heads/master'
         env:
           GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
