@@ -5,7 +5,7 @@
 
     <groupId>io.petrassi.tapegator</groupId>
     <artifactId>tapegator</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <packaging>pom</packaging>
 
     <name>TapeGator</name>
@@ -25,7 +25,7 @@
         <developerConnection>
             scm:git:https://${tapegator.scm.password}@github.com/${tapegator.scm.username}/TapeGator.git
         </developerConnection>
-      <tag>HEAD</tag>
+      <tag>1.0.3</tag>
   </scm>
 
     <modules>
