@@ -35,11 +35,11 @@ jobs:
       - name: Build and create snapshot tag and release
         if: github.ref == 'refs/heads/develop'
         run: |
-          mvn --batch-mode release:prepare -DreleaseVersion=${{ steps.determine_version.outputs.release_version }}-SNAPSHOT -DautoResolveSnapshots=1 "-Dtapegator.scm.username=AlexandrePetrassi" -Dtapegator.scm.password=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"
+          mvn --batch-mode release:prepare -DreleaseVersion="${{ steps.determine_version.outputs.release_version }}-SNAPSHOT" -DautoResolveSnapshots=1 "-Dtapegator.scm.username=AlexandrePetrassi" -Dtapegator.scm.password="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"
           mvn release:perform -Darguments="-Dmaven.javadoc.skip=true"
 
       - name: Build and create release
         if: github.ref == 'refs/heads/master'
         run: |
-          mvn --batch-mode release:prepare -DreleaseVersion=${{ steps.determine_version.outputs.release_version }} -DautoResolveSnapshots=1 "-Dtapegator.scm.username=AlexandrePetrassi" -Dtapegator.scm.password=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"
+          mvn --batch-mode release:prepare -DreleaseVersion="${{ steps.determine_version.outputs.release_version }}" -DautoResolveSnapshots=1 "-Dtapegator.scm.username=AlexandrePetrassi" -Dtapegator.scm.password="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"
           mvn release:perform -Darguments="-Dmaven.javadoc.skip=true"
