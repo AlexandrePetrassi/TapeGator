@@ -2,7 +2,7 @@
 
 calculate_next_version() {
   local latest_tag
-  latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+  latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
 
   local major
   local minor
