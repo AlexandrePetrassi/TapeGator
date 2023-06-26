@@ -9,7 +9,7 @@ calculate_next_version() {
   local next_version
 
   latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
-  commits=$(git log --pretty=%s "$latest_tag"..HEAD)
+  commits=$(git log --oneline "${latest_tag}"..HEAD)
   major=$(cut -d. -f1 <<< "$latest_tag")
   minor=$(cut -d. -f2 <<< "$latest_tag")
   patch=$(cut -d. -f3 <<< "$latest_tag")
