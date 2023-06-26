@@ -6,6 +6,7 @@ calculate_next_version() {
   local major
   local minor
   local patch
+  local ameba
 
   # Extract latest tag
   latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
