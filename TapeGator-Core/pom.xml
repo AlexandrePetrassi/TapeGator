@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tapegator-core</artifactId>
-    <version>0.0.13-SNAPSHOT</version>
+    <version>0.0.13</version>
     <packaging>jar</packaging>
 
     <name>TapeGator Core</name>
@@ -12,14 +12,14 @@
     <parent>
         <groupId>io.petrassi.tapegator</groupId>
         <artifactId>tapegator</artifactId>
-        <version>0.0.13-SNAPSHOT</version>
+        <version>0.0.13</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>io.petrassi.tapegator</groupId>
             <artifactId>tapegator-factory</artifactId>
-            <version>0.0.13-SNAPSHOT</version>
+            <version>0.0.13</version>
         </dependency>
     </dependencies>
 
