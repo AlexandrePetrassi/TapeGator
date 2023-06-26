@@ -18,29 +18,12 @@ calculate_next_version() {
   minor=$(cut -d. -f2 <<< "$latest_tag")
   patch=$(cut -d. -f3 <<< "$latest_tag")
 
-  # Flag to track version increment
-  incremented=false
-
   # Check commit messages and increment version components
-  while IFS= read -r commit; do
-    if [[ $commit == "BREAKING CHANGE"* ]]; then
-      major=$((major + 1))
-      minor=0
-      patch=0
-      incremented=true
-      break  # Break out of the loop
-    elif [[ $commit == "Add"* ]]; then
-      minor=$((minor + 1))
-      patch=0
-      incremented=true
-      break  # Break out of the loop
-    fi
-  done <<< "$commits"
-
-  # Increment patch if no major or minor increment occurred
-  if ! $incremented; then
-    patch=$((patch + 1))
+  if [[ $commits == *"BREAKING CHANGE"* ]]; then
+    echo "$((major + 1)).0.0"
+  elif [[ $commits == *"Add"* ]]; then
+    echo "${major}.$((minor + 1)).0"
+  else
+    echo "${major}.${minor}.$((patch + 1))"
   fi
-
-  echo "${major}.${minor}.${patch}"
 }
