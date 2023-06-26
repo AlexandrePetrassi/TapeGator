@@ -23,7 +23,7 @@ calculate_next_version() {
     elif [[ $commit == "Add"* ]]; then
       minor=$((minor + 1))
       patch=0
-      next_version="${major}.${minor}.0"
+      next_version="${major}.${minor}.${patch}"
       break
     fi
   done
